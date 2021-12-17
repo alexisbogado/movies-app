@@ -1,0 +1,56 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  avoid_reduncy:
+    name: Cancel previous redundant builds
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Cancel previous redundant builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+  install_dependencies:
+    name: Install dependencies
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+      
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+      
+      - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm i --ignore-scripts
+
+  build:
+    needs: [install_dependencies]
+    name: Build application
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: public
