@@ -11,7 +11,6 @@ import GrouppedMenu from './grouppedmenu'
 import CloseIcon from '../icons/close'
 import Arrow from 'images/arrow-icon.png'
 import SearchWhite from 'images/search-icon-white.png'
-import useHandleLocation from 'hooks/useHandleLocation'
 
 const grouppedLinks = [
   {
@@ -44,8 +43,6 @@ const grouppedLinks = [
 
 export default function SideNavBar() {
   const { isOpen, close } = useContext(MainContext)
-
-  useHandleLocation(() => close())
 
   return (
     <SideNavBarCont className={isOpen ? 'visible' : ''}>
