@@ -63,7 +63,7 @@ jobs:
         run: npm i --ignore-scripts
 
       - name: Install node-sass
-        run: nodejs node_modules/node-sass/scripts/install.js
+        run: node node_modules/node-sass/scripts/install.js
       
       - name: Rebuild node-sass
         run: npm rebuild node-sass
