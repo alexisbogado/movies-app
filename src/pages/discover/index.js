@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import MobilePageTitle from 'components/mobilepagetitle'
 
 // import * as colors from 'theme/colors'
 // import * as fetcher from '../../fetcher'
@@ -37,27 +36,23 @@ export default function Discover() {
   const { genreOptions, languageOptions, ratingOptions, totalCount, results } = state
 
   return (
-    <>
-      <MobilePageTitle title="Discover" />
-
-      <DiscoverWrapper>
-        <MovieFilters>
-          <SearchFilters
-            genres={genreOptions} 
-            ratings={ratingOptions}  
-            languages={languageOptions}
-            searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
-          />
-        </MovieFilters>
-        <MovieResults>
-          { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
-          <MovieList 
-            movies={results || []}
-            genres={genreOptions || []}
-          />
-        </MovieResults>
-      </DiscoverWrapper>
-    </>
+    <DiscoverWrapper>
+      <MovieFilters>
+        <SearchFilters
+          genres={genreOptions} 
+          ratings={ratingOptions}  
+          languages={languageOptions}
+          searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
+        />
+      </MovieFilters>
+      <MovieResults>
+        { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
+        <MovieList 
+          movies={results || []}
+          genres={genreOptions || []}
+        />
+      </MovieResults>
+    </DiscoverWrapper>
   )
 }
 

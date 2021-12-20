@@ -5,5 +5,5 @@ export default function useHandleLocation(handler) {
   const location = useLocation()
   const callback = useRef(handler)
 
-  useEffect(() => callback.current, [ location ])
+  useEffect(() => callback.current(location), [ location ])
 }
