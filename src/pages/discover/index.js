@@ -1,13 +1,11 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
-import { MainContext } from 'contexts/mainContext'
+import MobilePageTitle from 'components/mobilepagetitle'
 
 // import * as colors from 'theme/colors'
 // import * as fetcher from '../../fetcher'
 
 import SearchFilters from '../../components/searchfilter'
 import MovieList from '../../components/movielist'
-import HamburgerIcon from 'components/icons/hamburguer'
 
 export default function Discover() {
   const state = {
@@ -37,40 +35,34 @@ export default function Discover() {
   // Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 
   const { genreOptions, languageOptions, ratingOptions, totalCount, results } = state
-  const { open } = useContext(MainContext)
 
   return (
-    <DiscoverWrapper>
-      <div onClick={() => open()}>
-        <HamburgerIcon />
-      </div>
+    <>
+      <MobilePageTitle title="Discover" />
 
-      {/* MobilePageTitle should become visible on small screens & mobile devices*/}
-      <MobilePageTitle>
-        Discover
-      </MobilePageTitle>
-
-      <MovieFilters>
-        <SearchFilters
-          genres={genreOptions} 
-          ratings={ratingOptions}  
-          languages={languageOptions}
-          searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
-        />
-      </MovieFilters>
-      <MovieResults>
-        { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
-        <MovieList 
-          movies={results || []}
-          genres={genreOptions || []}
-        />
-      </MovieResults>
-    </DiscoverWrapper>
+      <DiscoverWrapper>
+        <MovieFilters>
+          <SearchFilters
+            genres={genreOptions} 
+            ratings={ratingOptions}  
+            languages={languageOptions}
+            searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
+          />
+        </MovieFilters>
+        <MovieResults>
+          { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
+          <MovieList 
+            movies={results || []}
+            genres={genreOptions || []}
+          />
+        </MovieResults>
+      </DiscoverWrapper>
+    </>
   )
 }
 
 const DiscoverWrapper = styled.main`
-  padding: 35px 45px;
+  padding: 60px 45px;
 `
 
 const TotalCounter = styled.div`
@@ -82,9 +74,5 @@ const MovieResults = styled.div`
 `
 
 const MovieFilters = styled.div`
-
-`
-
-const MobilePageTitle = styled.header`
 
 `
