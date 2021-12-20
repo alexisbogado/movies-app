@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function useHandleLocation(handler) {
   const location = useLocation()
+  const callback = useRef(handler)
 
-  useEffect(() => handler(), [ location ])
+  useEffect(() => callback.current, [ location ])
 }
