@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "^12.1.2",
     "axios": "^0.21.1",
     "node-sass": "^6.0.1",
     "npm-run-all": "^4.1.5",
