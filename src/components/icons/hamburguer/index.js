@@ -3,10 +3,8 @@ import { SVG } from '../styles'
 
 export default function HamburgerIcon() {
   return (
-    <SVG viewBox="0 0 100 60" width="40" height="40" fill={fontColor}>
-      <rect width="100" height="3"></rect>
-      <rect y="30" width="100" height="3"></rect>
-      <rect y="60" width="100" height="3"></rect>
+    <SVG viewBox="0 0 448 512" width="40px">
+      <path fill={fontColor} d="M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z" />
     </SVG>
   )
 }
