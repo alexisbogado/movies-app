@@ -62,6 +62,12 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm i --ignore-scripts
 
+      - name: Install node-sass
+        run: node node_modules/node-sass/scripts/install.js
+      
+      - name: Rebuild node-sass
+        run: npm rebuild node-sass
+
       - name: Test
         run: npm run test
 
@@ -71,5 +77,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: public
-          path: public
+          name: build
+          path: build

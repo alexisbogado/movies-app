@@ -1,12 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
 
-import MovieItem from '../movieitem';
+// import MovieItem from '../movieitem';
 
 export default class MovieList extends React.Component {
 
   render () {
-    const { movies, genres } = this.props;
+    // const { movies, genres } = this.props;
 
     return (
       <MoviesWrapper>
