@@ -45,7 +45,7 @@ const grouppedLinks = [
 export default function SideNavBar() {
   const { isOpen, close } = useContext(MainContext)
 
-  useHandleLocation(close)
+  useHandleLocation(() => close())
 
   return (
     <SideNavBarCont className={isOpen ? 'visible' : ''}>

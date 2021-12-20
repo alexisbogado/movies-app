@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import styled from 'styled-components'
 import { MainContext } from 'contexts/mainContext'
 
-import * as colors from 'theme/colors'
-import * as fetcher from '../../fetcher'
+// import * as colors from 'theme/colors'
+// import * as fetcher from '../../fetcher'
 
 import SearchFilters from '../../components/searchfilter'
 import MovieList from '../../components/movielist'

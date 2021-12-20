@@ -1,13 +1,13 @@
 import React from "react";
 import styled, { css } from 'styled-components';
 
-import * as colors from "theme/colors";
-import ExpandableFilter from "../../components/expandablefilter";
-import SearchBar from "../../components/searchbar";
+// import * as colors from "theme/colors";
+// import ExpandableFilter from "../../components/expandablefilter";
+// import SearchBar from "../../components/searchbar";
 
 export default class SearchFilters extends React.Component {
   render () {
-    const { genres, ratings, languages, searchMovies } = this.props;
+    // const { genres, ratings, languages, searchMovies } = this.props;
 
     return (
       <FiltersWrapper>
