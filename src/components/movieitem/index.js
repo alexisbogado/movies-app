@@ -1,3 +1,4 @@
+import NotFoundImage from 'images/220x330.png'
 import {
   Wrapper,
   Title,
@@ -19,7 +20,12 @@ export default function MovieItem({
 }) {
   return (
     <Wrapper>
-      <img src={`${process.env.REACT_APP_IMAGES_URL}/${poster_path}`} alt={title} loading="lazy" />
+      <img
+        src={`${process.env.REACT_APP_IMAGES_URL}/${poster_path}`}
+        alt={title}
+        loading="lazy"
+        onError={(e) => (e.target.src = NotFoundImage)}
+      />
 
       <Information>
         <Header>
