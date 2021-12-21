@@ -59,4 +59,3 @@ export const Date = styled.footer`
   font-weight: lighter;
   align-self: flex-end;
 `
-
