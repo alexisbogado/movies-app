@@ -1,9 +1,9 @@
 import { Wrapper, Spinner } from './styles'
 
-export default function Loader() {
+export default function Loader(props) {
   return (
-    <Wrapper>
-      <Spinner />
+    <Wrapper {...props}>
+      <Spinner {...props} />
     </Wrapper>
   )
 }

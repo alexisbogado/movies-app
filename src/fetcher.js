@@ -1,14 +1,35 @@
 import axios from 'axios'
+import {
+  API_URL,
+  COMMON_PARAMETERS,
+  parseParameters
+} from './helpers/fetcher'
 
-const {
-  REACT_APP_API_URL: url,
-  REACT_APP_API_KEY: key,
-} = process.env
+export const fetchDiscoverMovies = ({ language }) => {
+  const parameters = parseParameters({
+    ...COMMON_PARAMETERS,
+    language: language,
+  })
 
-export const fetchMovies = () => {
-  return axios.get(`${url}/discover/movie?api_key=${key}`) // &language=en-US
+  return axios.get(`${API_URL}/discover/movie?${parameters}`)
 }
 
-export const fetchGenres = () => {
-  return axios.get(`${url}/genre/movie/list?api_key=${key}`) // &language=en-US
+export const fetchGenres = ({ language }) => {
+  const parameters = parseParameters({
+    ...COMMON_PARAMETERS,
+    language: language,
+  })
+
+  return axios.get(`${API_URL}/genre/movie/list?${parameters}`)
+}
+
+export const fetchMovies = ({ keyword, year, language }) => {
+  const parameters = parseParameters({
+    ...COMMON_PARAMETERS,
+    language: language,
+    query: keyword,
+    primary_release_year: year,
+  })
+
+  return axios.get(`${API_URL}/search/movie?${parameters}`)
 }

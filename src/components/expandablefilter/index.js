@@ -1,8 +1,9 @@
 import { Title, CollapseIcon, Options } from './styles'
-import CheckBox from 'components/checkbox'
 import { useState } from 'react'
+import CheckBox from 'components/checkbox'
+import Loader from 'components/loader'
 
-export default function ExpandableFilter({ show, items, title }) {
+export default function ExpandableFilter({ show, items, title, isLoading }) {
   const [ isCollapsed, setIsCollapsed ] = useState(!show)
 
   return (
@@ -13,9 +14,11 @@ export default function ExpandableFilter({ show, items, title }) {
         {title}
       </Title>
 
-      <Options className={isCollapsed ? 'collapsed' : ''}>
-        {items.map((item, index) => <CheckBox {...item} key={index} />)}
-      </Options>
+      {isLoading ? <Loader small /> : (
+        <Options className={isCollapsed ? 'collapsed' : ''}>
+          {items.map((item, index) => <CheckBox {...item} key={index} />)}
+        </Options>
+      )}
     </>
   )
 }

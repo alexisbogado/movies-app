@@ -7,32 +7,17 @@ import {
 import MovieList from 'components/movielist'
 import SearchFilters from 'components/searchfilters'
 import useGenres from 'hooks/useGenres'
-import useMovies from 'hooks/useMovies'
+import useDiscoverMovies from 'hooks/useDiscoverMovies'
+import { ratingOptions, languageOptions } from 'helpers/filters'
+import useFilter from 'hooks/useFilter'
+import Loader from 'components/loader'
 
 export default function Discover() {
-  const { genres, getGenreById } = useGenres()
-  const { result, total } = useMovies()
+  const { isLoading: isFetchingGenres, genres, getGenreById } = useGenres()
+  const { isLoading: isFetchingMovies, movies: { result, total } } = useDiscoverMovies()
+  const { movies, setYear, setKeyword, isLoading: isFilteringMovies } = useFilter()
 
-  const ratingOptions = [
-    { id: 7.5, name: 7.5 },
-    { id: 8, name: 8 },
-    { id: 8.5, name: 8.5 },
-    { id: 9, name: 9 },
-    { id: 9.5, name: 9.5 },
-    { id: 10, name: 10 }
-  ]
-
-  const languageOptions = [
-    { id: 'GR', name: 'Greek' },
-    { id: 'EN', name: 'English' },
-    { id: 'RU', name: 'Russian' },
-    { id: 'PO', name: 'Polish' }
-  ]
-
-  // Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
-  const searchMovies = (keyword, year) => {
-    throw new Error('To be implemented')
-  }
+  const totalMovies = movies.total || total
 
   return (
     <Wrapper>
@@ -41,14 +26,25 @@ export default function Discover() {
           genres={genres} 
           ratings={ratingOptions}  
           languages={languageOptions}
-          searchMovies={(keyword, year) => searchMovies(keyword, year)}
+          setYear={setYear}
+          setKeyword={setKeyword}
+          isLoading={isFetchingGenres}
         />
       </MovieFilters>
 
       <MovieResults>
-        { total > 0 && <TotalCounter>{total} movies</TotalCounter>}
-
-        <MovieList movies={result} getGenre={getGenreById} />
+        {
+          (isFetchingGenres || isFetchingMovies || isFilteringMovies)
+            ? <Loader />
+            : (<>
+              {totalMovies > 0 && <TotalCounter>{totalMovies} movies</TotalCounter>}
+              
+              <MovieList
+                movies={movies.result.length ? movies.result : result}
+                getGenre={getGenreById}
+              />
+            </>)
+        }
       </MovieResults>
     </Wrapper>
   )
