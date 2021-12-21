@@ -13,7 +13,7 @@ export const SideNavBarCont = styled.div`
   padding: 10px 0;
   width: ${sideNavBarWidth}px;
 
-  @media (max-width: ${mobileBreakpoint}px) {
+  @media (max-width: ${mobileBreakpoint - 1}px) {
     width: 0;
     opacity: 0;
     visibility: hidden;
