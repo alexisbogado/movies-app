@@ -1,17 +1,19 @@
-import React from "react";
-import styled from 'styled-components';
+import { useState } from 'react'
+import { Wrapper, CheckBoxInput, Label } from './styles'
 
-export default class CheckBox extends React.Component {
-  // Create a custom checkbox component
-  
-  render () {
-    return (
-      <CheckboxCont>
-      </CheckboxCont>
-    )
-  }
+export default function CheckBox({ name }) {
+  const [ isChecked, setIsChecked ] = useState(false)
+
+  return (
+    <Wrapper>
+      <input
+        type="checkbox"
+        onChange={(event) => setIsChecked(event.target.checked)}
+        hidden
+      />
+
+      <CheckBoxInput className={isChecked ? 'checked' : ''}/>
+      <Label>{name}</Label>
+    </Wrapper>
+  )
 }
-
-const CheckboxCont = styled.div`
-  position: relative;
-`

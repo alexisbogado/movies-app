@@ -1,16 +1,21 @@
-import React from "react";
-// import styled from 'styled-components';
+import { Title, CollapseIcon, Options } from './styles'
+import CheckBox from 'components/checkbox'
+import { useState } from 'react'
 
-// import Checkbox from "../checkbox";
+export default function ExpandableFilter({ show, items, title }) {
+  const [ isCollapsed, setIsCollapsed ] = useState(!show)
 
-export default class ExpandableFilter extends React.Component {
-  constructor (props) {
-    super(props);
+  return (
+    <>
+      <Title onClick={() => setIsCollapsed(!isCollapsed)}>
+        <CollapseIcon>{isCollapsed ? '+' : '-'}</CollapseIcon>
 
-    this.state = {
-      filtersShown: false
-    };
-  }
+        {title}
+      </Title>
 
-  // You need to create your own checkbox component with a custom checkmark
+      <Options className={isCollapsed ? 'collapsed' : ''}>
+        {items.map((item, index) => <CheckBox {...item} key={index} />)}
+      </Options>
+    </>
+  )
 }

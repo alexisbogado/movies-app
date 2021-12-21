@@ -1,11 +1,17 @@
 import styled from 'styled-components'
-import { mobileBreakpoint, contentPaddingX } from 'theme/sizes'
+import { contentPaddingX } from 'theme/sizes'
 
 export const Wrapper = styled.main`
   padding: 60px 25px;
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  grid-auto-flow: row;
+  gap: 15px;
 
-  @media (min-width: ${mobileBreakpoint}px) {
+  @media (min-width: 992px) {
     padding: 60px ${contentPaddingX}px;
+    grid-auto-flow: column;
   }
 `
 
@@ -15,7 +21,7 @@ export const TotalCounter = styled.div`
 `
 
 export const MovieResults = styled.div`
-
+  grid-column-start: 1;
 `
 
 export const MovieFilters = styled.div`
