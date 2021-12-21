@@ -1,31 +1,38 @@
-import React from "react";
-import styled from 'styled-components';
+import {
+  Wrapper,
+  Title,
+  Category,
+  Header,
+  ScoreBubble,
+  Information,
+  Description,
+  Date
+} from './styles'
 
-export default class MovieItem extends React.Component {
+export default function MovieItem({
+  title,
+  poster_path,
+  vote_average,
+  genres,
+  overview,
+  release_date
+}) {
+  return (
+    <Wrapper>
+      <img src={`${process.env.REACT_APP_IMAGES_URL}/${poster_path}`} alt={title} loading="lazy" />
 
-  render () {
-    return (
-      // Complete the MovieItem component
-      <MovieItemWrapper>
-        <LeftCont>
-        </LeftCont>
-        <RightCont>
-        </RightCont>
-      </MovieItemWrapper>
-    )
-  }
+      <Information>
+        <Header>
+          <Title>{title}</Title>
+          <ScoreBubble>{vote_average}</ScoreBubble>
+        </Header>
+
+        <Category>{genres}</Category>
+
+        <Description>{overview}</Description>
+
+        <Date>{release_date}</Date>
+      </Information>
+    </Wrapper>
+  )
 }
-
-const MovieItemWrapper = styled.div`
-  position: relative;
-  background-color: white;
-  border-radius: 3px;
-`
-
-const LeftCont = styled.div`
-  display: inline-block;
-`
-
-const RightCont = styled.div`
-  display: inline-block;
-`

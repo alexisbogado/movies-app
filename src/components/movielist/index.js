@@ -1,21 +1,16 @@
-import React from "react";
-import styled from 'styled-components';
+import MovieItem from 'components/movieitem'
+import { Wrapper } from './styles'
 
-// import MovieItem from '../movieitem';
+export default function MovieList({ movies, getGenre }) {
+  return (
+    <Wrapper>
+      {movies.map((movie, index) => {
+        const genres = movie.genre_ids
+          .map(id => getGenre(id))
+          .join('|')
 
-export default class MovieList extends React.Component {
-
-  render () {
-    // const { movies, genres } = this.props;
-
-    return (
-      <MoviesWrapper>
-        {/* Finish the MovieItem component and use it here to display the movie results */}
-      </MoviesWrapper>
-    )
-  }
+        return <MovieItem {...movie} genres={genres} key={index} />
+      })}
+    </Wrapper>
+  )
 }
-
-const MoviesWrapper = styled.div`
-  position: relative;
-`
