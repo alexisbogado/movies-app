@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchGenres } from 'fetcher'
 
 export default function useGenres() {
+  const [ isLoading, setIsLoading ] = useState(false)
   const [ genres, setGenres ] = useState([ ])
 
   const getGenreById = (id) => {
@@ -11,12 +12,15 @@ export default function useGenres() {
   }
 
   useEffect(() => {
-    fetchGenres()
+    setIsLoading(true)
+
+    fetchGenres({ language: 'en-US' })
       .then(({ data }) => setGenres(data.genres))
       .catch(() => {
         throw new Error('Cannot fetch genres')
       })
+      .finally(() => setIsLoading(false))
   }, [ ])
 
-  return { genres, getGenreById }
+  return { genres, getGenreById, isLoading }
 }
