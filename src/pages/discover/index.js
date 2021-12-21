@@ -1,45 +1,42 @@
-import styled from 'styled-components'
-
-// import * as colors from 'theme/colors'
-// import * as fetcher from '../../fetcher'
+import {
+  Wrapper,
+  TotalCounter,
+  MovieResults,
+} from './styles'
+import MovieList from 'components/movielist'
+import useGenres from 'hooks/useGenres'
+import useMovies from 'hooks/useMovies'
 
 // import SearchFilters from '../../components/searchfilter'
-import MovieList from '../../components/movielist'
-
-
-import { mobileBreakpoint, contentPaddingX } from 'theme/sizes'
 
 export default function Discover() {
-  const state = {
-    keyword: '',
-    year: 0,
-    results: [],
-    totalCount: 0,
-    genreOptions: [],
-    ratingOptions: [
-      { id: 7.5, name: 7.5 },
-      { id: 8, name: 8 },
-      { id: 8.5, name: 8.5 },
-      { id: 9, name: 9 },
-      { id: 9.5, name: 9.5 },
-      { id: 10, name: 10 }
-    ],
-    languageOptions: [
-      { id: 'GR', name: 'Greek' },
-      { id: 'EN', name: 'English' },
-      { id: 'RU', name: 'Russian' },
-      { id: 'PO', name: 'Polish' }
-    ]
-  }
+  const { getGenreById } = useGenres()
+  const { result, total } = useMovies()
 
-  // Write a function to preload the popular movies when page loads & get the movie genres
+  // const state = {
+  //   keyword: '',
+  //   year: 0,
+  //   genreOptions: [],
+  //   ratingOptions: [
+  //     { id: 7.5, name: 7.5 },
+  //     { id: 8, name: 8 },
+  //     { id: 8.5, name: 8.5 },
+  //     { id: 9, name: 9 },
+  //     { id: 9.5, name: 9.5 },
+  //     { id: 10, name: 10 }
+  //   ],
+  //   languageOptions: [
+  //     { id: 'GR', name: 'Greek' },
+  //     { id: 'EN', name: 'English' },
+  //     { id: 'RU', name: 'Russian' },
+  //     { id: 'PO', name: 'Polish' }
+  //   ]
+  // }
 
   // Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 
-  const { genreOptions, /* languageOptions, ratingOptions, */ totalCount, results } = state
-
   return (
-    <DiscoverWrapper>
+    <Wrapper>
       {/* <MovieFilters>
         <SearchFilters
           genres={genreOptions} 
@@ -50,32 +47,10 @@ export default function Discover() {
       </MovieFilters> */}
 
       <MovieResults>
-        { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
-        <MovieList
-          movies={results || []}
-          genres={genreOptions || []}
-        />
+        { total > 0 && <TotalCounter>{total} movies</TotalCounter>}
+
+        <MovieList movies={result} getGenre={getGenreById} />
       </MovieResults>
-    </DiscoverWrapper>
+    </Wrapper>
   )
 }
-
-const DiscoverWrapper = styled.main`
-  padding: 60px 25px;
-
-  @media (min-width: ${mobileBreakpoint}px) {
-    padding: 60px ${contentPaddingX}px;
-  }
-`
-
-const TotalCounter = styled.div`
-  font-weight: 900;
-`
-
-const MovieResults = styled.div`
-
-`
-
-// const MovieFilters = styled.div`
-
-// `
