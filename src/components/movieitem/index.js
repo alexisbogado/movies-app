@@ -11,27 +11,27 @@ import {
 
 export default function MovieItem({
   title,
-  picture,
-  score,
-  category,
-  description,
-  date 
+  poster_path,
+  vote_average,
+  genres,
+  overview,
+  release_date
 }) {
   return (
     <Wrapper>
-      <img src={picture} alt={title} loading="lazy" />
+      <img src={`${process.env.REACT_APP_IMAGES_URL}/${poster_path}`} alt={title} loading="lazy" />
 
       <Information>
         <Header>
           <Title>{title}</Title>
-          <ScoreBubble>{score}</ScoreBubble>
+          <ScoreBubble>{vote_average}</ScoreBubble>
         </Header>
 
-        <Category>{category}</Category>
+        <Category>{genres}</Category>
 
-        <Description>{description}</Description>
+        <Description>{overview}</Description>
 
-        <Date>{date}</Date>
+        <Date>{release_date}</Date>
       </Information>
     </Wrapper>
   )
