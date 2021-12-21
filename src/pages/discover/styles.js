@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { contentPaddingX } from 'theme/sizes'
+import { contentPaddingX, desktopBreakpoint } from 'theme/sizes'
 
 export const Wrapper = styled.main`
-  padding: 60px 25px;
+  padding: 0 25px;
   display: grid;
   grid-column: 2;
   grid-row: 1;
@@ -10,7 +10,7 @@ export const Wrapper = styled.main`
   gap: 15px;
   grid-template-columns: 1fr auto;
 
-  @media (min-width: 1124px) {
+  @media (min-width: ${desktopBreakpoint}px) {
     padding: 60px ${contentPaddingX}px;
     grid-auto-flow: column;
   }
@@ -23,6 +23,10 @@ export const TotalCounter = styled.div`
 
 export const MovieResults = styled.div`
   grid-column-start: 1;
+  
+  & h1 {
+    margin-top: 35px;
+  }
 `
 
 export const MovieFilters = styled.div`
