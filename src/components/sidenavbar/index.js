@@ -6,7 +6,7 @@ import {
 } from './styles'
 import { useContext } from 'react'
 import { MainContext } from 'contexts/mainContext'
-import * as colors from 'theme/colors'
+import { primaryColor } from 'theme/colors'
 import GrouppedMenu from './grouppedmenu'
 import CloseIcon from '../icons/close'
 import Arrow from 'images/arrow-icon.png'
@@ -57,7 +57,7 @@ export default function SideNavBar() {
         <NavIcon src={Arrow} alt="Arrow icon" />
       </SideNavMainLink>
 
-      <SideNavMainLink bg={colors.primaryColor} to="/discover">
+      <SideNavMainLink bg={primaryColor} to="/discover">
         Discover
         <NavIcon src={SearchWhite} alt="Search icon" />
       </SideNavMainLink>

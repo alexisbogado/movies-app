@@ -5,7 +5,7 @@ export default function useDiscoverMovies() {
   const [ isLoading, setIsLoading ] = useState(false)
   const [ movies, setMovies ] = useState({
     result: [ ],
-    total: 0,
+    total: -1,
   })
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { useDebouncedCallback } from 'use-debounce'
 
 const defaultMovies = {
   result: [ ],
-  total: 0,
+  total: -1,
 }
 
 export default function useFilter() {
@@ -18,7 +18,7 @@ export default function useFilter() {
       setMovies(defaultMovies)
       return
     }
-    
+
     setIsLoading(true)
 
     fetchMovies({ keyword, year })

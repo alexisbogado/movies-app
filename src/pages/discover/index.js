@@ -14,10 +14,23 @@ import Loader from 'components/loader'
 
 export default function Discover() {
   const { isLoading: isFetchingGenres, genres, getGenreById } = useGenres()
-  const { isLoading: isFetchingMovies, movies: { result, total } } = useDiscoverMovies()
-  const { movies, setYear, setKeyword, isLoading: isFilteringMovies } = useFilter()
+  const { movies: moviesToDiscover, isLoading: isFetchingMovies } = useDiscoverMovies()
+  const {
+    movies: filteredMovies,
+    isLoading: isFilteringMovies,
+    setYear,
+    setKeyword
+  } = useFilter()
 
-  const totalMovies = movies.total || total
+  const isLoading = (isFetchingGenres || isFetchingMovies || isFilteringMovies)
+
+  const totalMovies = filteredMovies.total >= 0
+    ? filteredMovies.total
+    : moviesToDiscover.total
+
+  const movieList = filteredMovies.total >= 0
+    ? filteredMovies.result
+    : moviesToDiscover.result
 
   return (
     <Wrapper>
@@ -34,15 +47,19 @@ export default function Discover() {
 
       <MovieResults>
         {
-          (isFetchingGenres || isFetchingMovies || isFilteringMovies)
+          isLoading
             ? <Loader />
             : (<>
-              {totalMovies > 0 && <TotalCounter>{totalMovies} movies</TotalCounter>}
-              
-              <MovieList
-                movies={movies.result.length ? movies.result : result}
-                getGenre={getGenreById}
-              />
+              {totalMovies <= 0
+                ? <h1>0 results found</h1>
+                : (<>
+                  <TotalCounter>{totalMovies} movies</TotalCounter>
+                  <MovieList
+                    movies={movieList}
+                    getGenre={getGenreById}
+                  />
+                </>)
+              }
             </>)
         }
       </MovieResults>

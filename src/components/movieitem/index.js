@@ -7,7 +7,8 @@ import {
   ScoreBubble,
   Information,
   Description,
-  Date
+  Date,
+  Image
 } from './styles'
 
 export default function MovieItem({
@@ -20,7 +21,7 @@ export default function MovieItem({
 }) {
   return (
     <Wrapper>
-      <img
+      <Image
         src={`${process.env.REACT_APP_IMAGES_URL}/${poster_path}`}
         alt={title}
         loading="lazy"

@@ -51,11 +51,16 @@ export const Description = styled.p`
   text-overflow: ellipsis;
   overflow: hidden;
   word-wrap: break-word;
-  max-height: 150px;
+  max-height: 145px;
 `
 
 export const Date = styled.footer`
   color: ${primaryColor};
   font-weight: lighter;
   align-self: flex-end;
+`
+
+export const Image = styled.img`
+  max-width: 100%;
+  height: auto;
 `

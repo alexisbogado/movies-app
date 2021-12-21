@@ -10,6 +10,8 @@ export const Input = styled.input`
   outline: none;
   font-size: 1em;
   padding: 10px 0 10px ${props => props.icon ? contentPaddingX : 0}px;
+  width: -webkit-fill-available;
+  border-radius: 0;
 
   ${props => props.icon && css`
     background: url(${props.icon});

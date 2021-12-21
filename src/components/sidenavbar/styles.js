@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import * as colors from 'theme/colors'
+import { sideNavBar } from 'theme/colors'
 import { sideNavBarWidth, mobileBreakpoint } from 'theme/sizes'
 
 export const SideNavBarCont = styled.div`
-  background-color: ${colors.sideNavBar};
+  background-color: ${sideNavBar};
   display: flex;
   flex-direction: column;
   position: fixed;
