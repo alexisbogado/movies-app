@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { fontColor, primaryColor } from 'theme/colors'
 
 export const Wrapper = styled.div`
-  height: 100vh;
+  ${props => props.small ? css`padding: 10px 0;` : css`height: 100vh;`}
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 
 export const Spinner = styled.div`
   border: 4px solid ${fontColor};
-  width: 36px;
-  height: 36px;
+  width: ${props => props.small ? 24 : 36}px;
+  height: ${props => props.small ? 24 : 36}px;
   border-radius: 50%;
   border-left-color: ${primaryColor};
   animation: spin 1s ease infinite;
