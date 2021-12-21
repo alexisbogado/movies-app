@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import * as colors from 'theme/colors'
 import { sideNavBarWidth, mobileBreakpoint } from 'theme/sizes'
@@ -50,5 +50,7 @@ export const SideNavMainLink = styled(NavLink)`
   font-size: 1.6em;
   padding: 25px 35px;
 
-  ${props => props.bg && `background-color: ${props.bg}`};
+  ${props => props.bg && css`
+    background-color: ${props.bg};
+  `}
 `
