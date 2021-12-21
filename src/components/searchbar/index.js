@@ -1,10 +1,7 @@
-import React from "react";
-// import styled from 'styled-components';
+import { Input } from './styles'
 
-// import * as colors from "theme/colors";
-// import SearchIcon from "../../images/search-icon-yellow.png";
-// import CalendarIcon from "../../images/year-icon.png";
-
-export default class SearchBar extends React.Component {
-
+export default function SearchBar(props) {
+  return (
+    <Input {...props} />
+  )
 }
