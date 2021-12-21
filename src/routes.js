@@ -1,6 +1,7 @@
-import Discover from './pages/discover'
-import NotFound from './pages/notfound'
+import { lazy } from 'react'
 
+const Discover = lazy(() => import('./pages/discover'))
+const NotFound = lazy(() => import('./pages/notfound'))
 const fallbackRoute = {
   path: '*',
   title: 'Error',
