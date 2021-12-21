@@ -59,3 +59,8 @@ export const Date = styled.footer`
   font-weight: lighter;
   align-self: flex-end;
 `
+
+export const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+`

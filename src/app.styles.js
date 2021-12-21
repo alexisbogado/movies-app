@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { sideNavBarWidth, mobileBreakpoint } from 'theme/sizes'
 
 export const ContentWrapper = styled.main`
-  padding-left: 0;
+  margin-left: 0;
 
   @media (min-width: ${mobileBreakpoint}px) {
-    padding-left: ${sideNavBarWidth}px;
+    margin-left: ${sideNavBarWidth}px;
   }
 `
 

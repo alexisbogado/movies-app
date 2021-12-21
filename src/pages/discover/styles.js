@@ -10,7 +10,7 @@ export const Wrapper = styled.main`
   gap: 15px;
   grid-template-columns: 1fr auto;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1124px) {
     padding: 60px ${contentPaddingX}px;
     grid-auto-flow: column;
   }
