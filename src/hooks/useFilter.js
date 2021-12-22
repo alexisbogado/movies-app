@@ -12,6 +12,7 @@ export default function useFilter() {
   const [ keyword, setKeyword ] = useState('')
   const [ year, setYear ] = useState(0)
   const [ movies, setMovies ] = useState(defaultMovies)
+  const [ cache, setCache ] = useState({ })
 
   const callback = useDebouncedCallback((year, keyword) => {
     if (!year && !keyword) {
@@ -19,13 +20,27 @@ export default function useFilter() {
       return
     }
 
+    const key = `keyword:${keyword}_year:${year}`
+    const cachedResult = cache[key]
+
+    if (cachedResult) {
+      setMovies(cachedResult)
+      return 
+    }
+
     setIsLoading(true)
 
     fetchMovies({ keyword, year })
       .then(({ data }) => {
-        setMovies({
+        const movie = {
           result: data.results,
           total: data.total_results,
+        }
+
+        setMovies(movie)
+        setCache({
+          ...cache,
+          [key]: movie,
         })
       })
       .catch(() => {
