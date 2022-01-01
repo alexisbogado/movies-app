@@ -1,32 +1,30 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import { mobileBreakpoint } from 'theme/sizes'
 import { getTitleByPath } from 'routes'
-import useIsOpen from 'hooks/useIsOpen'
 import usePageTitle from 'hooks/usePageTitle'
 import useHandleLocation from 'hooks/useHandleLocation'
 
 const MainContext = createContext({
   isOpen: false,
-  open: () => { },
-  close: () => { },
+  setIsOpen: () => { },
   title: ''
 })
 
 const isNavBarOpened = window.innerWidth > mobileBreakpoint
 
 const MainContextProvider = ({ children }) => {
-  const { isOpen, open, close } = useIsOpen(isNavBarOpened)
+  const [ isOpen, setIsOpen ] = useState(isNavBarOpened)
   const { title, setTitle } = usePageTitle('Main')
 
   useHandleLocation(({ pathname }) => {
     const title = getTitleByPath(pathname)
     
     setTitle(title)
-    close()
+    setIsOpen(false)
   })
 
   return (
-    <MainContext.Provider value={{ isOpen, open, close, title }}>
+    <MainContext.Provider value={{ isOpen, setIsOpen, title }}>
       {children}
     </MainContext.Provider>
   )

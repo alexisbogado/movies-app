@@ -4,11 +4,11 @@ import { PageTitle } from './styles'
 import HamburgerIcon from 'components/icons/hamburguer'
 
 export default function MobilePageTitle() {
-  const { title, open } = useContext(MainContext)
+  const { title, setIsOpen } = useContext(MainContext)
 
   return (
     <PageTitle>
-      <div onClick={() => open()}>
+      <div onClick={() => setIsOpen(true)}>
         <HamburgerIcon />
       </div>
 

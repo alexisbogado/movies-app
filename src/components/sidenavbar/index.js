@@ -42,12 +42,12 @@ const grouppedLinks = [
 ]
 
 export default function SideNavBar() {
-  const { isOpen, close } = useContext(MainContext)
+  const { isOpen, setIsOpen } = useContext(MainContext)
 
   return (
     <SideNavBarCont className={isOpen ? 'visible' : ''}>
       <SideNavHead>
-        <div onClick={() => close()}>
+        <div onClick={() => setIsOpen(false)}>
           <CloseIcon />
         </div>
       </SideNavHead>
