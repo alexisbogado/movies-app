@@ -2,11 +2,11 @@ import { renderHook, act } from '@testing-library/react-hooks'
 import usePageTitle from './'
 
 const { REACT_APP_TITLE } = process.env
+const title = 'Main'
+
+let hook = null
 
 describe('usePageTitle hook', () => {
-  const title = 'Main'
-  let hook = null
-
   beforeEach(() => {
     const { result } = renderHook(() => usePageTitle(title))
 
