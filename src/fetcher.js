@@ -8,7 +8,7 @@ import {
 export const fetchDiscoverMovies = ({ language }) => {
   const parameters = parseParameters({
     ...COMMON_PARAMETERS,
-    language: language,
+    language: language ?? COMMON_PARAMETERS.language,
   })
 
   return axios.get(`${API_URL}/discover/movie?${parameters}`)
@@ -17,7 +17,7 @@ export const fetchDiscoverMovies = ({ language }) => {
 export const fetchGenres = ({ language }) => {
   const parameters = parseParameters({
     ...COMMON_PARAMETERS,
-    language: language,
+    language: language ?? COMMON_PARAMETERS.language,
   })
 
   return axios.get(`${API_URL}/genre/movie/list?${parameters}`)
@@ -26,7 +26,7 @@ export const fetchGenres = ({ language }) => {
 export const fetchMovies = ({ keyword, year, language }) => {
   const parameters = parseParameters({
     ...COMMON_PARAMETERS,
-    language: language,
+    language: language ?? COMMON_PARAMETERS.language,
     query: keyword,
     primary_release_year: year,
   })
