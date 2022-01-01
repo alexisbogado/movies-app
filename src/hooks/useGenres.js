@@ -14,7 +14,7 @@ export default function useGenres() {
   useEffect(() => {
     setIsLoading(true)
 
-    fetchGenres({ language: 'en-US' })
+    fetchGenres()
       .then(({ data }) => setGenres(data.genres))
       .catch(() => {
         throw new Error('Cannot fetch genres')

@@ -3,10 +3,7 @@ export const {
   REACT_APP_API_KEY: API_KEY,
 } = process.env
 
-export const COMMON_PARAMETERS = {
-  api_key: API_KEY,
-  language: 'en-US',
-}
+export const DEFAULT_LANGUAGE = 'en-US'
 
 export const parseParameters = (parameters) => {
   return Object.entries(parameters)

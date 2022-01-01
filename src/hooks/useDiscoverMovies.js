@@ -11,7 +11,7 @@ export default function useDiscoverMovies() {
   useEffect(() => {
     setIsLoading(true)
 
-    fetchDiscoverMovies({ language: 'en-US' })
+    fetchDiscoverMovies()
       .then(({ data }) => {
         setMovies({
           result: data.results,
