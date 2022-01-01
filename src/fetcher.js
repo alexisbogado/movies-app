@@ -24,6 +24,10 @@ export const fetchGenres = ({ language = DEFAULT_LANGUAGE } = { }) => {
 }
 
 export const fetchMovies = ({ keyword, year, language = DEFAULT_LANGUAGE }) => {
+  if (!keyword) {
+    throw new Error(`Keyword parameter is required to fetch movies`)
+  }
+
   const parameters = parseParameters({
     language,
     query: keyword,
