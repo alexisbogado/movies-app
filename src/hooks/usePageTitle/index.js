@@ -6,7 +6,7 @@ export default function usePageTitle(initialTitle) {
 
   useEffect(() => {
     document.title = `${REACT_APP_TITLE} - ${title}`
-  }, [ title ])
+  }, [ title, REACT_APP_TITLE ])
 
   return { title, setTitle }
 }
