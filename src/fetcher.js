@@ -1,26 +1,15 @@
-import axios from 'axios'
 import {
   API_URL,
-  API_KEY,
   DEFAULT_LANGUAGE,
-  parseParameters
+  request,
 } from './helpers/fetcher'
 
-axios.interceptors.request.use(config => ({
-  ...config,
-  url: `${config.url}&api_key=${API_KEY}`
-}))
-
 export const fetchDiscoverMovies = ({ language = DEFAULT_LANGUAGE } = { }) => {
-  const parameters = parseParameters({ language })
-
-  return axios.get(`${API_URL}/discover/movie?${parameters}`)
+  return request(`${API_URL}/discover/movie`, { language })
 }
 
 export const fetchGenres = ({ language = DEFAULT_LANGUAGE } = { }) => {
-  const parameters = parseParameters({ language })
-
-  return axios.get(`${API_URL}/genre/movie/list?${parameters}`)
+  return request(`${API_URL}/genre/movie/list`, { language })
 }
 
 export const fetchMovies = ({ keyword, year, language = DEFAULT_LANGUAGE }) => {
@@ -28,11 +17,9 @@ export const fetchMovies = ({ keyword, year, language = DEFAULT_LANGUAGE }) => {
     throw new Error(`Keyword parameter is required to fetch movies`)
   }
 
-  const parameters = parseParameters({
+  return request(`${API_URL}/search/movie`, {
     language,
     query: keyword,
     primary_release_year: year,
   })
-
-  return axios.get(`${API_URL}/search/movie?${parameters}`)
 }
