@@ -12,7 +12,6 @@ export const mockInvalidApiCall = () => {
 export const mockValidApiCall = () => {
   jest.spyOn(axios, 'get')
     .mockResolvedValue({
-      ...axios.get.config,
       status: 200,
       data: { key: 'value' },
     })
