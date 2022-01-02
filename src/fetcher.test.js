@@ -3,6 +3,7 @@ import {
   fetchGenres,
   fetchMovies,
 } from './fetcher'
+import { mockInvalidApiCall } from 'helpers/tests'
 
 const movieResponseStructure = {
   results: expect.any(Array),
@@ -28,6 +29,12 @@ describe('Fetcher', () => {
     expect(data.results[0]).toMatchObject(movieStructure)
   })
 
+  it('throws an error if fetch movies to discover fails', async () => {
+    mockInvalidApiCall()
+
+    await expect(fetchDiscoverMovies()).rejects.toThrow()
+  })
+
   it('fetchs genres', async () => {
     const { data, status } = await fetchGenres()
 
@@ -41,6 +48,12 @@ describe('Fetcher', () => {
       id: expect.any(Number),
       name: expect.any(String),
     })
+  })
+
+  it('throws an error if fetch genres fails', async () => {
+    mockInvalidApiCall()
+
+    await expect(fetchGenres()).rejects.toThrow()
   })
 
   it('throws an error if argument keyword is not defined when fetching movies', () => {
@@ -65,4 +78,9 @@ describe('Fetcher', () => {
     expect(data.results[0]).toMatchObject(movieStructure)
   })
 
+  it('throws an error if fetch movies fails', async () => {
+    mockInvalidApiCall()
+
+    await expect(fetchMovies({ keyword: 'gucci' })).rejects.toThrow()
+  })
 })
