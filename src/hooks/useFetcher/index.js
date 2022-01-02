@@ -30,7 +30,7 @@ export default function useFetcher(fetcher) {
       })
 
     return () => { mounted.current = false }
-  }, [ ])
+  }, [ fetcher ])
 
   return { data, isLoading, error }
 }
