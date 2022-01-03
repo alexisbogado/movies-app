@@ -1,4 +1,4 @@
-describe('Side navbar component', () => {
+describe('Movie item component', () => {
   it('renders successfully', () => {
     // TODO
   })

@@ -1,4 +1,4 @@
-describe('Side navbar component', () => {
+describe('Expandable filter component', () => {
   it('renders successfully', () => {
     // TODO
   })

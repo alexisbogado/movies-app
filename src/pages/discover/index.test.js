@@ -1,4 +1,4 @@
-describe('Side navbar component', () => {
+describe('Discover page', () => {
   it('renders successfully', () => {
     // TODO
   })
