@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import GrouppedMenu from './'
 
-describe('GrouppedMenu', () => {
+describe('Groupped menu component', () => {
   it('render title and links', () => {
     const props = {
       title: 'Menu',
