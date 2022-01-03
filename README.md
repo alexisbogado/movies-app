@@ -45,9 +45,13 @@ React SPA to search movies
 ## Stack
 
 - [react](https://reactjs.org/)
-- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
+- [@testing-library/react-hooks](https://react-hooks-testing-library.com/)
 - [axios](https://github.com/axios/axios)
+- [axios-mock-adapter](https://www.npmjs.com/package/axios-mock-adapter)
 - [node-sass](https://www.npmjs.com/package/node-sass)
 - [react-router](https://v5.reactrouter.com/web/guides/quick-start)
 - [styled-components](https://styled-components.com/docs/basics)
 - [use-debounce](https://github.com/xnimorz/use-debounce)
+- [history](https://github.com/remix-run/history)
+- [cypress](https://www.cypress.io/)
