@@ -4,3 +4,5 @@ build
 .env
 coverage
 .vscode
+cypress/screenshots
+cypress/videos
