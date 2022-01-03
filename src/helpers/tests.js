@@ -21,3 +21,7 @@ export const mockFetcher = (fetchFn, callback) => {
   jest.spyOn(fetcher, fetchFn)
     .mockImplementation(callback)
 }
+
+export const wait = (milliseconds) => {
+  return new Promise((r) => setTimeout(r, milliseconds))
+}
