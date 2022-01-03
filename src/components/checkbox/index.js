@@ -12,7 +12,7 @@ export default function CheckBox({ name }) {
         hidden
       />
 
-      <CheckBoxInput className={isChecked ? 'checked' : ''}/>
+      <CheckBoxInput className={isChecked ? 'checked' : ''} role="button" />
       <Label>{name}</Label>
     </Wrapper>
   )
