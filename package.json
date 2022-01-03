@@ -20,6 +20,7 @@
   },
   "scripts": {
     "test": "react-scripts test",
+    "test:e2e": "cypress run",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",
