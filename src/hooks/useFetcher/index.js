@@ -1,36 +1,48 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useReducer } from 'react'
+
+const fetchStatuses = {
+  FETCHING: 'FETCHING',
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
+}
+
+const reducer = (state, { type, data, error }) => {
+  const { FETCHING, SUCCESS, FAILURE } = fetchStatuses
+  const actions = {
+    [FETCHING]: { ...state, isLoading: true },
+    [SUCCESS]: { ...state, isLoading: false, data },
+    [FAILURE]: { ...state, isLoading: false, error },
+  }
+
+  return actions[type]
+}
 
 export default function useFetcher(fetcher) {
-  const [ isLoading, setIsLoading ] = useState(true)
-  const [ data, setData ] = useState([ ])
-  const [ error, setError ] = useState({ })
-  const mounted = useRef(true)
+  const [ state, dispatch ] = useReducer(reducer, {
+    isLoading: true,
+    data: [ ],
+    error: { },
+  })
 
   useEffect(() => {
-    setIsLoading(true)
+    let mounted = true
 
-    fetcher()
-      .then(({ data }) => {
-        if (!mounted.current) {
-          return
-        }
+    const fetch = async () => {
+      dispatch({ type: fetchStatuses.FETCHING })
 
-        setData(data)
-        setError({ })
-        setIsLoading(false)
-      })
-      .catch(err => {
-        if (!mounted.current) {
-          return
-        }
+      try {
+        const { data } = await fetcher()
 
-        setData([ ])
-        setError(err)
-        setIsLoading(false)
-      })
+        mounted && dispatch({ type: fetchStatuses.SUCCESS, data })
+      } catch (error) {
+        mounted && dispatch({ type: fetchStatuses.FAILURE, error })
+      }
+    }
 
-    return () => { mounted.current = false }
-  }, [ fetcher ])
+    fetch()
 
-  return { data, isLoading, error }
+    return () => { mounted = false }
+  }, [ dispatch, fetcher ])
+
+  return { ...state }
 }
