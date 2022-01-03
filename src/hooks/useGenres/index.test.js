@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { mockFetchGenres } from 'helpers/tests'
+import { mockFetcher } from 'helpers/tests'
 import useGenres from './'
 
 const invalidCallback = () => Promise.reject('invalid api call')
@@ -30,7 +30,7 @@ describe('useGenres hook', () => {
   })
 
   it('should return empty genres if api call fails', async () => {
-    mockFetchGenres(invalidCallback)
+    mockFetcher('fetchGenres', invalidCallback)
 
     const { result, waitForNextUpdate } = renderHook(() => useGenres())
     
@@ -63,7 +63,7 @@ describe('useGenres hook', () => {
   })
 
   it('should throw error when trying to search genre and api call has failed', async () => {
-    mockFetchGenres(invalidCallback)
+    mockFetcher('fetchGenres', invalidCallback)
 
     const { result, waitForNextUpdate } = renderHook(() => useGenres())
     

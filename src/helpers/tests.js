@@ -17,7 +17,7 @@ export const mockValidApiCall = () => {
     })
 }
 
-export const mockFetchGenres = (callback) => {
-  jest.spyOn(fetcher, 'fetchGenres')
+export const mockFetcher = (fetchFn, callback) => {
+  jest.spyOn(fetcher, fetchFn)
     .mockImplementation(callback)
 }
