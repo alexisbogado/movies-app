@@ -26,6 +26,7 @@ React SPA to search movies
 4. Run tests to ensure that everything works well
 ```
     npm run test
+    npm run test:e2e
 ```
 
 5. Compile assets and start the server
