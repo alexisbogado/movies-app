@@ -146,7 +146,7 @@ jobs:
         run: npm rebuild node-sass
       
       - name: Start server
-        run: npm run start
+        run: npm run start &
       
       - name: Cache Cypress binary
         id: cache-cypress-dependency
