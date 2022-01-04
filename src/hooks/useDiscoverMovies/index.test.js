@@ -3,23 +3,41 @@ import { mockFetcher } from 'helpers/tests'
 import useDiscoverMovies from './'
 
 const invalidCallback = () => Promise.reject('invalid api call')
+const mockMovie = (title) => ({
+  title,
+  poster_path: 'someurl',
+  vote_average: 4,
+  genre_ids: [ 1, 2 ],
+  overview: 'description',
+  release_date: '2012-12-12',
+})
 
-let hook = null
+const mockedMovies = [
+  mockMovie('movie'),
+  mockMovie('movie 2'),
+  mockMovie('movie 3'),
+]
 
 describe('useDiscoverMovies hook', () => {
-  beforeEach(() => {
-    hook = renderHook(() => useDiscoverMovies())
-  })
-
   it('should return isloading state as true', () => {
-    const { result } = hook
+    const { result } = renderHook(() => useDiscoverMovies())
     const { isLoading } = result.current
 
     expect(isLoading).toBe(true)
   })
 
   it('should fetch from api and set isloading state to false', async () => {
-    const { result, waitForNextUpdate } = hook
+    mockFetcher('fetchDiscoverMovies', () => {
+      return Promise.resolve({
+        status: 200,
+        data: {
+          results: mockedMovies,
+          total_results: mockedMovies.length,
+        },
+      })
+    })
+
+    const { result, waitForNextUpdate } = renderHook(() => useDiscoverMovies())
 
     await waitForNextUpdate()
     

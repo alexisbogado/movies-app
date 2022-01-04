@@ -14,15 +14,9 @@ const mockedMovies = {
 const validCallback = () => Promise.resolve({ data: mockedMovies })
 const invalidCallback = () => Promise.reject('invalid api call')
 
-let hook = null
-
 describe('useFilter hook', () => {
-  beforeEach(() => {
-    hook = renderHook(() => useFilter())
-  })
-
   it('should return isloading as false, result as empty array and total as -1', async () => {
-    const { result } = hook
+    const { result } = renderHook(() => useFilter())
     const { movies, isLoading } = result.current
 
     expect(isLoading).toBe(false)
@@ -34,7 +28,7 @@ describe('useFilter hook', () => {
   it('empty keyword should return result as empty array and total as -1', async () => {
     mockFetcher('fetchMovies', invalidCallback)
 
-    const { result } = hook
+    const { result } = renderHook(() => useFilter())
     const { setKeyword } = result.current
 
     act(() => { setKeyword('') })
@@ -50,7 +44,15 @@ describe('useFilter hook', () => {
   })
 
   it('should fetch from api and set isloading state to false', async () => {
-    const { result, waitForNextUpdate } = hook
+    mockFetcher('fetchMovies', () => {
+      return new Promise(async (resolve) => {
+        await wait(100)
+
+        resolve({ status: 200, data: mockedMovies })
+      })
+    })
+
+    const { result, waitForNextUpdate } = renderHook(() => useFilter())
     const { setKeyword } = result.current
 
     act(() => { setKeyword('movie') })
@@ -72,7 +74,7 @@ describe('useFilter hook', () => {
   it('previous searches should be taken from cache', async () => {
     mockFetcher('fetchMovies', validCallback)
 
-    const { result, waitForNextUpdate } = hook
+    const { result, waitForNextUpdate } = renderHook(() => useFilter())
     const { setKeyword } = result.current
     const keyword = 'movie'
 
@@ -103,7 +105,7 @@ describe('useFilter hook', () => {
   it('should return result as empty array and total as -1 if api call fails', async () => {
     mockFetcher('fetchMovies', invalidCallback)
 
-    const { result, waitForNextUpdate } = hook
+    const { result, waitForNextUpdate } = renderHook(() => useFilter())
     const { setKeyword } = result.current
     
     act(() => { setKeyword('test') })

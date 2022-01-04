@@ -1,25 +1,39 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { mockFetcher } from 'helpers/tests'
+import { mockFetcher, wait } from 'helpers/tests'
 import useGenres from './'
 
 const invalidCallback = () => Promise.reject('invalid api call')
+const mockValidCall = () => {
+  mockFetcher('fetchGenres', () => {
+    const data = {
+      genres: [
+        { id: 1, name: 'genre' },
+        { id: 2, name: 'genre 2' },
+      ]
+    }
 
-let hook = null
+    return new Promise(async (resolve) => {
+      await wait(100)
+
+      resolve({ status: 200, data })
+    })
+  })
+}
 
 describe('useGenres hook', () => {
-  beforeEach(() => {
-    hook = renderHook(() => useGenres())
-  })
-
   it('should return isloading state as true', () => {
-    const { result } = hook
+    mockValidCall()
+
+    const { result } = renderHook(() => useGenres())
     const { isLoading } = result.current
 
     expect(isLoading).toBe(true)
   })
 
   it('should fetch from api and set isloading state to false', async () => {
-    const { result, waitForNextUpdate } = hook
+    mockValidCall()
+
+    const { result, waitForNextUpdate } = renderHook(() => useGenres())
 
     await waitForNextUpdate()
     
@@ -42,7 +56,9 @@ describe('useGenres hook', () => {
   })
 
   it('get genre name by existing id', async () => {
-    const { result, waitForNextUpdate } = hook
+    mockValidCall()
+
+    const { result, waitForNextUpdate } = renderHook(() => useGenres())
 
     await waitForNextUpdate()
     
@@ -53,7 +69,9 @@ describe('useGenres hook', () => {
   })
 
   it('get genre name by unexisting id should throw error', async () => {
-    const { result, waitForNextUpdate } = hook
+    mockValidCall()
+    
+    const { result, waitForNextUpdate } = renderHook(() => useGenres())
     
     await waitForNextUpdate()
     
