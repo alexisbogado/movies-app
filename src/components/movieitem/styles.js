@@ -59,7 +59,7 @@ export const Description = styled.p`
 
     &:after {
       content: ' ';
-      background: linear-gradient(to bottom, transparent, white);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
       position: absolute;
       width: 100%;
       height: 30px;
@@ -79,5 +79,9 @@ export const Date = styled.footer`
 export const Image = styled.img`
   object-fit: cover;
   max-width: 100%;
-  height: 100%;
+  height: auto;
+
+  @media (min-width: 480px) {
+    min-height: 100%;
+  }
 `
