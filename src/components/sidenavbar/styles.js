@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { sideNavBar } from 'theme/colors'
-import { sideNavBarWidth, mobileBreakpoint } from 'theme/sizes'
+import { sideNavBarWidth, breakPoints } from 'theme/sizes'
 
 export const SideNavBarCont = styled.div`
   background-color: ${sideNavBar};
@@ -12,17 +12,14 @@ export const SideNavBarCont = styled.div`
   height: 100%;
   padding: 10px 0;
   width: ${sideNavBarWidth}px;
+  overflow: hidden;
 
-  @media (max-width: ${mobileBreakpoint - 1}px) {
+  @media (max-width: ${breakPoints.large - 1}px) {
     width: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: width .5s, opacity .4s, visibility .4s;
+    transition: width .5s;
     
     &.visible {
       width: 100%;
-      opacity: 100;
-      visibility: visible;
     }
   }
 `
@@ -37,7 +34,7 @@ export const SideNavHead = styled.div`
   margin: 0 0 0 auto;
   padding: 10px 35px 0 35px;
 
-  @media (min-width: ${mobileBreakpoint}px) {
+  @media (min-width: ${breakPoints.large}px) {
     display: none;
   }
 `
