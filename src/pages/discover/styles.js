@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { contentPaddingX, desktopBreakpoint } from 'theme/sizes'
+import { contentPaddingX, breakPoints } from 'theme/sizes'
 
 export const Wrapper = styled.main`
   padding: 0 25px;
@@ -7,11 +7,15 @@ export const Wrapper = styled.main`
   grid-column: 2;
   grid-row: 1;
   grid-auto-flow: row;
-  gap: 15px;
   grid-template-columns: 1fr auto;
 
-  @media (min-width: ${desktopBreakpoint}px) {
+  @media (min-width: ${breakPoints.large}px) {
     padding: 60px ${contentPaddingX}px;
+  }
+
+  @media (min-width: ${breakPoints.medium}px) {
+    gap: 15px;
+    padding: 60px 25px;
     grid-auto-flow: column;
   }
 `

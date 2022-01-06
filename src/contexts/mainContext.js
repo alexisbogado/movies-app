@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import { mobileBreakpoint } from 'theme/sizes'
+import { breakPoints } from 'theme/sizes'
 import { getTitleByPath } from 'routes'
 import usePageTitle from 'hooks/usePageTitle'
 import useHandleLocation from 'hooks/useHandleLocation'
@@ -10,7 +10,7 @@ const MainContext = createContext({
   title: ''
 })
 
-const isNavBarOpened = window.innerWidth > mobileBreakpoint
+const isNavBarOpened = window.innerWidth > breakPoints.large
 
 const MainContextProvider = ({ children }) => {
   const [ isOpen, setIsOpen ] = useState(isNavBarOpened)

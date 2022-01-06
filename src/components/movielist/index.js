@@ -7,7 +7,7 @@ export default function MovieList({ movies, getGenre }) {
       {movies.map((movie, index) => {
         const genres = movie.genre_ids
           .map(id => getGenre(id))
-          .join('|')
+          .join(' | ')
 
         return <MovieItem {...movie} genres={genres} key={index} />
       })}

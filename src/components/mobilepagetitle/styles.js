@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mobileBreakpoint } from 'theme/sizes'
+import { breakPoints } from 'theme/sizes'
 
 export const PageTitle = styled.header`
   display: flex;
@@ -9,7 +9,7 @@ export const PageTitle = styled.header`
   line-height: 0;
   padding: 20px 25px;
 
-  @media (min-width: ${mobileBreakpoint}px) {
+  @media (min-width: ${breakPoints.large}px) {
     display: none;
   }
 `
