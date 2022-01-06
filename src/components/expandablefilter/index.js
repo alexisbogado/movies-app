@@ -15,7 +15,7 @@ export default function ExpandableFilter({ show, items, title, isLoading }) {
       </Title>
 
       {isLoading ? <Loader small /> : (
-        <Options className={isCollapsed ? 'collapsed' : ''}>
+        <Options className={isCollapsed && 'collapsed'}>
           {items.map((item, index) => <CheckBox {...item} key={index} />)}
         </Options>
       )}

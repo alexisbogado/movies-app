@@ -14,14 +14,15 @@ export const CollapseIcon = styled.div`
 `
 
 export const Options = styled.div`
+  overflow: hidden;
   display: grid;
   gap: 10px;
   padding: 15px 0;
-  transition: height .5s, padding .10s;
+  max-height: 100vh;
+  transition: max-height .5s ease-in-out, padding .8s ease-in-out;
 
   &.collapsed {
     padding: 0;
-    overflow: hidden;
-    height: 0;
+    max-height: 0;
   }
 `
