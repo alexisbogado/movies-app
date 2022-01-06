@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { primaryColor, fontColor } from 'theme/colors'
+import { breakPoints } from 'theme/sizes'
 
 export const Wrapper = styled.div`
   background-color: white;
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
   grid-template-columns: 150px 1fr;
   gap: 20px;
 
-  @media (max-width: 480px) {
+  @media (max-width: ${breakPoints.small}px) {
     grid-template-columns: 1fr;
     justify-items: center;
   }
@@ -25,6 +26,13 @@ export const Title = styled.div`
   font-size: 1.6em;
   color: ${fontColor};
   font-weight: bold;
+  overflow: hidden;
+
+  @media (max-width: ${breakPoints.large}px) {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+  }
 `
 
 export const Category = styled.small`
@@ -48,8 +56,7 @@ export const ScoreBubble = styled.div`
 `
 
 export const Description = styled.p`
-
-  @media (min-width: 480px) {
+  @media (min-width: ${breakPoints.small}px) {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -81,7 +88,7 @@ export const Image = styled.img`
   max-width: 100%;
   height: auto;
 
-  @media (min-width: 480px) {
+  @media (min-width: ${breakPoints.small}px) {
     min-height: 100%;
   }
 `
