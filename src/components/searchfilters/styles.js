@@ -1,6 +1,7 @@
-import styled, { css } from 'styled-components'
-import { desktopBreakpoint } from 'theme/sizes'
+import styled from 'styled-components'
+import { breakPoints } from 'theme/sizes'
 import { primaryColor } from 'theme/colors'
+import FilterIcon from 'images/filter-icon.png'
 
 export const Wrapper = styled.div`
   margin-top: 35px;
@@ -10,48 +11,64 @@ export const SearchContainer = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 3px;
-  transition: height .5s, padding .4s;
+  margin-bottom: 15px;
 
-  @media (min-width: ${desktopBreakpoint}px) {
-    transition: none;
-  }
-  
-  ${props => props.marginBottom && css`
-    margin-bottom: 15px;
-  `}
-  
-  &.search_inputs_cont {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: transparent;
-    padding: 0;
+  &.search_filters_cont {
+    padding: 20px;
+    max-height: 1000px;
+    overflow: hidden;
+    visibility: visible;
 
-    & .search_year_input {
-      display: none;
-    }
+    @media (max-width: ${breakPoints.medium - 1}px) {
+      transition: max-height 0.5s ease-in-out, padding 0.5s, visibility 0.5s;
 
-    @media (min-width: ${desktopBreakpoint}px) {
-      display: block;
-      background: #fff;
-      padding: 20px;
-
-      & .search_year_input {
-        display: block;
+      &[data-visibility="hidden"] {
+        padding: 0 20px;
+        max-height: 0;
+        visibility: hidden;
+        transition: max-height 0.5s ease-in-out, padding 0.8s, visibility 0.5s;
       }
     }
   }
+  
+  &.search_inputs_cont {
+    background: transparent;
+    padding: 0;
+  }
 
-  &.search_filters_cont_invisible {
-    height: 0;
-    padding: 0 20px;
-    overflow: hidden;
-
-    @media (min-width: ${desktopBreakpoint}px) {
-      height: auto;
-      padding: 20px;
-      visibility: visible;
+  @media (min-width: ${breakPoints.medium}px) {
+    &.search_filters_cont {
+      /*transition: height .5s, padding .4s;*/
     }
+
+    &.search_inputs_cont {
+      background: #fff;
+      padding: 20px;
+    }
+  }
+`
+
+export const YearInputContainer = styled.div`
+  overflow: hidden;
+
+  @media (max-width: ${breakPoints.medium - 1}px) {
+    max-height: 50px;
+    transition: max-height 0.5s ease-in-out;
+
+    &.search_year_input_cont_invisible {
+      max-height: 0;
+    }
+  }
+`
+
+export const MainSearchInput = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin: 10px 0;
+
+  @media (min-width: ${breakPoints.medium}px) {
+    display: block;
   }
 `
 
@@ -68,8 +85,14 @@ export const FilterButton = styled.button`
   border-bottom: 2px solid;
   display: block;
   outline: 0;
+  background-image: url(${FilterIcon});
+  background-repeat: no-repeat;
+  background-size: 35px 35px;
+  background-position: center;
+  width: 40px;
+  height: 40px;
 
-  @media (min-width: ${desktopBreakpoint}px) {
+  @media (min-width: ${breakPoints.medium}px) {
     display: none;
   }
 `

@@ -3,14 +3,15 @@ import {
   Wrapper,
   SearchContainer,
   CategoryTitle,
-  FilterButton
+  FilterButton,
+  MainSearchInput,
+  YearInputContainer,
 } from './styles'
-import { desktopBreakpoint } from 'theme/sizes'
+import { breakPoints } from 'theme/sizes'
 import SearchBar from 'components/searchbar'
 import ExpandableFilter from 'components/expandablefilter'
 import SearchIcon from 'images/search-icon-yellow.png'
 import CalendarIcon from 'images/year-icon.png'
-import FilterIcon from 'images/filter-icon.png'
 
 export default function SearchFilters({
   genres,
@@ -20,32 +21,32 @@ export default function SearchFilters({
   setYear,
   isLoading,
 }) {
-  const [ isOpen, setIsOpen ] = useState(window.innerWidth > desktopBreakpoint)
+  const [ isOpen, setIsOpen ] = useState(window.innerWidth > breakPoints.large)
 
   return (
     <Wrapper>
-      <SearchContainer className="search_inputs_cont" marginBottom>
-        <SearchBar
-          placeholder="Search for movies"
-          icon={SearchIcon}
-          marginBottom
-          onChange={(e) => setKeyword(e.target.value)}
-        />
+      <SearchContainer className="search_inputs_cont" isOpen={isOpen}>
+        <MainSearchInput>
+          <SearchBar
+            placeholder="Search for movies"
+            icon={SearchIcon}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
 
-        <FilterButton onClick={() => setIsOpen(!isOpen)}>
-          <img src={FilterIcon} alt="Filter icon" />
-        </FilterButton>
+          <FilterButton onClick={() => setIsOpen(!isOpen)} />
+        </MainSearchInput>
 
-        <SearchBar
-          className="search_year_input"
-          type="number"
-          placeholder="Year of release"
-          icon={CalendarIcon}
-          onChange={(e) => setYear(e.target.value)}
-        />
+        <YearInputContainer className={!isOpen && 'search_year_input_cont_invisible'}>
+          <SearchBar
+            type="number"
+            placeholder="Year of release"
+            icon={CalendarIcon}
+            onChange={(e) => setYear(e.target.value)}
+          />
+        </YearInputContainer>
       </SearchContainer>
 
-      <SearchContainer className={!isOpen && 'search_filters_cont_invisible'}>
+      <SearchContainer className='search_filters_cont' data-visibility={isOpen ? 'visible' : 'hidden'}>
         <CategoryTitle>Movie</CategoryTitle>
         
         <ExpandableFilter
