@@ -12,6 +12,7 @@ export const Input = styled.input`
   padding: 10px 0 10px ${props => props.icon ? contentPaddingX : 0}px;
   width: -webkit-fill-available;
   border-radius: 0;
+  margin-bottom: 0;
 
   ${props => props.icon && css`
     background: url(${props.icon});
@@ -20,7 +21,7 @@ export const Input = styled.input`
   `}
   
   ${props => props.marginBottom && css`
-    margin: 10px 0;
+    margin-bottom: 10px;
   `}
 
   &::placeholder {
