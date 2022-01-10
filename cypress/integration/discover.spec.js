@@ -1,12 +1,12 @@
 describe('Discover view', () => {
   beforeEach(() => {
-    cy.visit('/discover')
-
     cy.intercept('GET', 'https://api.themoviedb.org/3/discover/movie?*')
       .as('discoverMovies')
 
     cy.intercept('GET', 'https://api.themoviedb.org/3/genre/movie/list?*')
       .as('genreList')
+    
+    cy.visit('/discover')
   })
 
   it('renders without crashing', () => {
