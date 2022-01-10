@@ -5,12 +5,6 @@ on:
     branches: [master]
     types: [opened, synchronize]
 
-env:
-  REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
-  REACT_APP_IMAGES_URL: ${{ secrets.REACT_APP_IMAGES_URL }}
-  REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-  REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-
 jobs:
   avoid_reduncy:
     name: Cancel previous redundant builds
@@ -152,6 +146,11 @@ jobs:
         run: npm rebuild node-sass
       
       - name: Start server
+        env:
+          REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
+          REACT_APP_IMAGES_URL: ${{ secrets.REACT_APP_IMAGES_URL }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
         run: npm run start &
       
       - name: Cache Cypress binary
