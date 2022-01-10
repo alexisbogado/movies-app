@@ -28,7 +28,7 @@ export default function MovieItem({
         onError={(e) => (e.target.src = NotFoundImage)}
       />
 
-      <Information>
+      <Information data-testid="movie-information">
         <Header>
           <Title>{title}</Title>
           <ScoreBubble>{vote_average}</ScoreBubble>

@@ -45,7 +45,7 @@ export default function Discover() {
         />
       </MovieFilters>
 
-      <MovieResults>
+      <MovieResults data-testid="movies-result">
         {
           isLoading
             ? <Loader />
